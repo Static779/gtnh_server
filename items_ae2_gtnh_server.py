@@ -138,11 +138,13 @@ with st.expander("All items:"):
         if temp_df.empty:
             continue
 
-        fig = px.line(
-            temp_df,
-            x="datetime",
-            y="quantity",
-            title="Quantity of: " + col
-        )
-
-        st.plotly_chart(fig1, use_container_width=True, key=f"main_{items_filter}")
+        try:
+            fig = px.line(
+                temp_df,
+                x="datetime",
+                y="quantity",
+                title="Quantity of: " + str(col)
+            )
+            st.plotly_chart(fig, use_container_width=True, key=f"all_items_{col}")
+        except Exception as e:
+            st.warning(f"Could not render chart for {col}: {e}")
