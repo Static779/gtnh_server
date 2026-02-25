@@ -126,7 +126,7 @@ with fig_col2:
         y="quantity",
         title="Quantity of: " + items_filter
     )
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=f"all_items_{col}")
 
 # ---------------------------
 # All items
@@ -145,4 +145,4 @@ with st.expander("All items:"):
             title="Quantity of: " + col
         )
 
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig1, use_container_width=True, key=f"main_{items_filter}")
