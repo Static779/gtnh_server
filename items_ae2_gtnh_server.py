@@ -124,9 +124,13 @@ with fig_col2:
         item_track,
         x="datetime",
         y="quantity",
-        title="Quantity of: " + items_filter
+        title="Quantity of: " + str(items_filter)
     )
-    st.plotly_chart(fig, use_container_width=True, key=f"all_items_{col}")
+    st.plotly_chart(
+        fig1,
+        use_container_width=True,
+        key=f"main_{str(items_filter)}"
+    )
 
 # ---------------------------
 # All items
