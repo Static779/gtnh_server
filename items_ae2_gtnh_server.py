@@ -30,7 +30,10 @@ conn = st.connection("supabase",type=SupabaseConnection)
 filter = datetime.datetime.today() - datetime.timedelta(days=4)
 
 # Get the list os items
-items = execute_query(conn.table(supabase_table).select("item").filter(("datetime"),"gt",filter), ttl='20m')
+items = execute_query(
+    conn.table(supabase_table).select("item").gt("datetime", filter),
+    ttl="20m",
+)
 items = pd.DataFrame.from_dict(items.data)
 distinct_items = items.item.unique()
 
