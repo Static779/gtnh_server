@@ -22,16 +22,7 @@ supabase_table = "ae_items_flat"
 conn = st.connection("supabase", type=SupabaseConnection)
 
 # time filter deprecated
-items_resp = execute_query(
-    conn.table(supabase_table).select("item"),
-    ttl="20m",
-)
-
-rows_resp = execute_query(
-    conn.table(supabase_table).select("*"),
-    ttl="20m",
-)
-
+filter_time = datetime.datetime.utcnow() - datetime.timedelta(days=20000)
 # ---------------------------
 # Load distinct items
 # ---------------------------
