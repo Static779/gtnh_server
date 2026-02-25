@@ -145,6 +145,11 @@ with st.expander("All items:"):
                 y="quantity",
                 title="Quantity of: " + str(col)
             )
-            st.plotly_chart(fig, use_container_width=True, key=f"all_items_{col}")
+
+            st.plotly_chart(
+                fig,
+                use_container_width=True,
+                key=f"all_items_{str(col)}"
+            )
         except Exception as e:
             st.warning(f"Could not render chart for {col}: {e}")
