@@ -124,8 +124,12 @@ with fig_col2:
         item_track,
         x="datetime",
         y="quantity",
-        title="Quantity of: " + str(items_filter)
+        title="Quantity of: " + str(items_filter),
+        markers=True
     )
+
+    fig1.update_traces(line={"width": 4}, marker={"size": 8})
+
     st.plotly_chart(
         fig1,
         use_container_width=True,
@@ -142,18 +146,18 @@ with st.expander("All items:"):
         if temp_df.empty:
             continue
 
-        try:
-            fig = px.line(
-                temp_df,
-                x="datetime",
-                y="quantity",
-                title="Quantity of: " + str(col)
-            )
+        fig = px.line(
+            temp_df,
+            x="datetime",
+            y="quantity",
+            title="Quantity of: " + str(col),
+            markers=True
+        )
 
-            st.plotly_chart(
-                fig,
-                use_container_width=True,
-                key=f"all_items_{str(col)}"
-            )
-        except Exception as e:
-            st.warning(f"Could not render chart for {col}: {e}")
+        fig.update_traces(line={"width": 4}, marker={"size": 6})
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True,
+            key=f"all_items_{str(col)}"
+        )
